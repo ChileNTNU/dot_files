@@ -47,6 +47,3 @@ RPS1='[%{$fg[red]%}%?%{$reset_color%}]'
 alias ls='ls --color'
 LS_COLORS='di=1;34:fi=0:ln=31:pi=0;32:so=33:bd=35:cd=37:or=92:mi=93:ex=92:*.rpm=90'
 export LS_COLORS
-
-
-ColorPalette=#073642;#dc322f;#859900;#b58900;#205b92;#d33682;#2aa198;#eee8d5;#002b36;#cb4b16;#586e75;#657b83;#839496;#6c71c4;#004fae;#fdf6e3
