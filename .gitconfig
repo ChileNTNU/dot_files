@@ -1,5 +1,6 @@
 [alias]
 	alles = log --oneline --graph --decorate --all
+	min = log --oneline --graph --decorate --all --simplify-by-decoration
 [core]
 	editor = vim
 [push]
