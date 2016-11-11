@@ -1,0 +1,10 @@
+#!/bin/bash
+
+tmux new-session -d -n 'dir'
+tmux new-window -n 'files'
+tmux split-window -v
+tmux new-window -n 'vim'
+tmux split-window -h 'vim'
+tmux new-window -n 'extras'
+tmux select-window -t 0
+tmux -2 attach-session -d
