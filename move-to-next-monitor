@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 #
 # Move the current window to the next monitor.
 #
@@ -13,13 +13,36 @@
 # the first command does not respect panel/decoration offsets and the second
 # will sometimes give a "-0-0" geometry. This is why we resort to "xwininfo".
 
-screen_width=`xdpyinfo | awk '/dimensions:/ { print $2; exit }' | cut -d"x" -f1`
-display_width=`xdotool getdisplaygeometry | cut -d" " -f1`
+# Get the screens connected to the computer
+number_screens=`xrandr | awk 'BEGIN{a = 0} / connected/{ a = a + 1} END{print a}'`
+data_screens=`xrandr | awk '/ connected/{print}' | awk '{ for (i=1; i<=NF; i++) { tmp=match($i, /[0-9]x[0-9]/); if(tmp){print $i} } }'`
+
+declare -A all_screens
+
+# Input all the data from the screens into an array.
+#
+# Ex: 1366x768+0+0 which is width x height + x_offset + y_offset
+for (( i=0; i<$number_screens; i++)); do
+  width=`echo $data_screens | awk screen=$i+1'{print $screen}' | awk 'BEGIN{FS="x"} {print $1}'`
+  height=`echo $data_screens | awk screen=$i+1'{print $screen}' | awk 'BEGIN{FS="x"} {print $2}' | awk 'BEGIN{FS="+"} {print $1}' `
+  x_offset=`echo $data_screens | awk screen=$i+1'{print $screen}' | awk 'BEGIN{FS="x"} {print $2}' | awk 'BEGIN{FS="+"} {print $2}' `
+  y_offset=`echo $data_screens | awk screen=$i+1'{print $screen}' | awk 'BEGIN{FS="x"} {print $2}' | awk 'BEGIN{FS="+"} {print $3}' `
+
+  #echo "w:" $width
+  #echo "h:" $height
+  #echo "x:" $x_offset
+  #echo "y:" $y_offset
+
+  all_screens[$i,0]=$width
+  all_screens[$i,1]=$height
+  all_screens[$i,2]=$x_offset
+  all_screens[$i,3]=$y_offset
+done
+
 window_id=`xdotool getactivewindow`
 
 # Remember if it was maximized.
 window_state=`xprop -id $window_id _NET_WM_STATE | awk '{ print $3 }'`
-
 # Un-maximize current window so that we can move it
 wmctrl -ir $window_id -b remove,maximized_vert,maximized_horz
 
@@ -32,24 +55,49 @@ x_offset=`xwininfo -id $window_id | awk '/Relative upper-left X:/ { print $4 }'`
 y_offset=`xwininfo -id $window_id | awk '/Relative upper-left Y:/ { print $4 }'`
 x=`expr $x - $x_offset`
 y=`expr $y - $y_offset`
+#echo "x" $x
+#echo "y" $y
 
-# Compute new X position
-new_x=`expr $x + $display_width`
+# Find out in which monitor the window is
+for (( i=0; i<$number_screens; i++)); do
+  lower_x=`expr $x - ${all_screens[$i,2]}`
+  higher_x=`expr ${all_screens[$i,0]} + ${all_screens[$i,2]} - $x`
+  lower_y=`expr $y - ${all_screens[$i,3]}`
+  higher_y=`expr ${all_screens[$i,1]} + ${all_screens[$i,3]} - $y`
 
-# If we would move off the right-most monitor, we set it to the left one.
-# We also respect the window's width here: moving a window off more than half its width won't happen.
-width=`xdotool getwindowgeometry $window_id | awk '/Geometry:/ { print $2 }'|cut -d"x" -f1`
-if [ `expr $new_x + $width / 2` -gt $screen_width ]; then
-  new_x=`expr $new_x - $screen_width`
+  #echo "width" ${all_screens[$i,0]}
+  #echo "x offset" ${all_screens[$i,2]}
+  #echo "height" ${all_screens[$i,1]}
+  #echo "y_offset" ${all_screens[$i,3]}
+  #echo "lower_x" $lower_x
+  #echo "higher_x" $higher_x
+  #echo "lower_y" $lower_y
+  #echo "higher_y" $higher_y
+
+  if [ "$lower_x" -gt "0" ] && [ "$higher_x" -gt "0" ] &&
+     [ "$lower_y" -gt "0" ] && [ "$higher_y" -gt "0" ]; then
+    prev_screen=$i
+    break
+  fi
+
+done
+
+# Decide in which new screen it should go
+new_screen=`expr $prev_screen + 1`
+if [ "$new_screen" -eq "$number_screens" ]; then
+  new_screen=0
 fi
+#echo "prev" $prev_screen
+#echo "new"  $new_screen
 
-# Don't move off the left side.
-if [ $new_x -lt 0 ]; then
-  new_x=0
-fi
+# Calculate the new coordinates
+new_x=`expr $x - ${all_screens[$prev_screen,2]} + ${all_screens[$new_screen,2]}`
+new_y=`expr $y - ${all_screens[$prev_screen,3]} + ${all_screens[$new_screen,3]}`
+#echo "nex x" $new_x
+#echo "new y" $new_y
 
 # Move the window
-xdotool windowmove $window_id $new_x $y
+xdotool windowmove $window_id $new_x $new_y
 
 # Maximize window again, if it was before
 if [ -n "${window_state}" ]; then
