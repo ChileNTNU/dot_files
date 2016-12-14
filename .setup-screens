@@ -1,0 +1,34 @@
+#! /bin/bash
+
+#logger "Setting up screens by milo"
+
+screens=`xrandr | awk '/ connected/ {print $1}'`
+
+if [ `echo $screens | wc -w` -eq 3 ]; then
+
+  result=true
+
+  # find the specifics of my screen setup
+  for tarjet_screen in $screens; do
+    if [ $tarjet_screen == 'eDP1' ] || [ $tarjet_screen == 'DP2-1' ] || [ $tarjet_screen == 'DP2-2' ]; then
+      $result = $result & true
+    else
+      $result = $result & false
+    fi
+  done
+
+  if [ $result == true ]; then
+    # we are connected to my setup of 3 screens. Configure them
+    `xrandr --output DP2-2 --auto`
+    `xrandr --output DP2-2 --pos 0x0 --rotate right`
+    `xrandr --output DP2-1 --auto`
+    `xrandr --output DP2-1 --pos 1080x840`
+    `xrandr --output eDP1 --auto`
+    `xrandr --output eDP1 --pos 3000x840`
+  else
+    echo '3 screens but not my setup'
+  fi
+
+else
+  echo 'not 3 screens'
+fi
