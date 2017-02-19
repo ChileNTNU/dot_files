@@ -1,6 +1,10 @@
 " Vim configuration file - Emilio
 
-" Set colors 
+" Use Vim settings, rather than Vi
+" This must be first, because it changes other options as a side effect.
+set nocompatible
+
+" Set colors
 syntax on
 colorscheme elflord
 
@@ -28,7 +32,9 @@ set expandtab
 "set guicursor+=i:blinkwait10
 
 " Highlights a search. To stop highlighting do :noh
-"set hlsearch
+set hlsearch
+" Change colour of font when in search function
+hi Search ctermfg=White ctermbg=Black
 
 " Commands
 " Delete trailing spaces
