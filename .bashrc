@@ -115,4 +115,4 @@ GIT_PROMPT_ONLY_IN_REPO=1
 GIT_PROMPT_THEME=Single_Line
 GIT_PROMPT_START=$PS1
 
-source ~/apps/.bash-git-prompt/gitprompt.sh
+source ~/apps/bash-git-prompt/gitprompt.sh
