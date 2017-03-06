@@ -1,3 +1,6 @@
 [submodule "bash-emilio"]
 	path = bash-git-prompt
 	url = https://github.com/ChileNTNU/bash-git-prompt.git
+[submodule "zsh-emilio"]
+	path = zsh-git-prompt
+	url = https://github.com/ChileNTNU/zsh-git-prompt.git
