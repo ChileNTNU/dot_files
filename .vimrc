@@ -89,7 +89,7 @@ highlight CursorLine cterm=none ctermbg=235
 " Highlights a search. To stop highlighting do :noh
 set hlsearch
 " Change colour of font when in search function
-hi Search ctermfg=White ctermbg=Black
+hi Search ctermfg=White ctermbg=DarkYellow
 
 " Remaping Ctrl+s to save the document
 :nmap <C-s> :w!<cr>
