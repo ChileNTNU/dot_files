@@ -1,7 +1,9 @@
 [alias]
   alles = log --oneline --graph --decorate --all
+  min = log --oneline --graph --decorate --all --simplify-by-decoration
   next = ! git checkout `git log --reverse --ancestry-path HEAD..master | head -n 1 | cut -d ' ' -f 2`
 [user]
+  useConfigOnly = true
   name = Emilio Garcia
   email = el_burro@abc.com
 [core]
