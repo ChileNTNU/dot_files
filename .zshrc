@@ -21,7 +21,6 @@ zstyle ':completion:*' completer _expand _complete _correct _approximate
 zstyle ':completion:*' use-compctl false
 zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=* l:|=*'
 
-
 # formatting and messages
 # http://www.masterzen.fr/2009/04/19/in-love-with-zsh-part-one/
 zstyle ':completion:*' verbose yes
@@ -48,13 +47,19 @@ alias ls='ls --color'
 LS_COLORS='di=1;34:fi=0:ln=31:pi=0;32:so=33:bd=35:cd=37:or=92:mi=93:ex=92:*.rpm=90'
 export LS_COLORS
 
-# Windows additions
-WIN_HOME='/mnt/c/Users/Emilio García/'
-export WIN_HOME
+# Change default editor of svn to vim
+export SVN_EDITOR=vim
+
+#################### Windows additions ####################
+
+#env var for windows usage
+WINHOME=/mnt/c/Users/garcia
+export WINHOME
+`cd $WINHOME`
 
 # Start tmux
-if [ -z "$TMUX" ]; then
-  source .tmux-session
+if [ -z ${TMUX+x} ]; then
+  source ~/.tmux-session
 fi
 
 # Disable flow control, so ctrl+s has no effect and we can use it in vim for saving
