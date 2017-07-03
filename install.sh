@@ -6,53 +6,49 @@
 home_dir=~
 eval home_dir=$home_dir
 
-# For debugging, delete when not needed
-dummy_folder="dummy"
-
 install_shells()
 {
   echo "Installling shells config"
-  cp .bashrc $home_dir/$dummy_folder/
-  cp .zshrc $home_dir/$dummy_folder/
+  cp .bashrc $home_dir/
+  cp .zshrc $home_dir/
 }
 
 install_basic()
 {
   echo "Installing vim, tmux and star up config and external commands"
-  cp .startup $home_dir/$dummy_folder/
-  cp .tmux.conf $home_dir/$dummy_folder/
-  cp .tmux-session $home_dir/$dummy_folder/
-  cp .vimrc $home_dir/$dummy_folder/
+  cp .startup $home_dir/
+  cp .tmux.conf $home_dir/
+  cp .tmux-session $home_dir/
+  cp .vimrc $home_dir/
 
-  if [ -d "$home_dir/$dummy_folder/bin" ]
+  if [ -d "$home_dir/bin" ]
   then
     echo "Bin folder found"
   else
     echo "No bin folder found, create it"
-    mkdir $home_dir/$dummy_folder/bin
+    mkdir $home_dir/bin
   fi
 
-  cp extra_commands/* $home_dir/$dummy_folder/bin
-  chmod -R +x $home_dir/$dummy_folder/bin
+  cp extra_commands/* $home_dir/bin
+  chmod -R +x $home_dir/bin
 }
 
 install_git()
 {
   echo "Installing git config and prompts for bash and zsh"
 
-  if [ -d "$home_dir/$dummy_folder/apps" ]
+  if [ -d "$home_dir/apps" ]
   then
     echo "Apps folder found"
   else
     echo "No apps folder found, create it"
-    echo "$home_dir/$dummy_folder"
-    mkdir $home_dir/$dummy_folder/apps
+    mkdir $home_dir/apps
   fi
 
-  cp .gitconfig $home_dir/$dummy_folder/
+  cp .gitconfig $home_dir/
   # Copy prompts into ~/apps
-  cp -r bash-git-prompt/ $home_dir/$dummy_folder/apps
-  cp -r zsh-git-prompt/ $home_dir/$dummy_folder/apps
+  cp -r bash-git-prompt/ $home_dir/apps
+  cp -r zsh-git-prompt/ $home_dir/apps
 }
 
 
