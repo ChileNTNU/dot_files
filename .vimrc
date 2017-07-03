@@ -4,7 +4,7 @@
 " This must be first, because it changes other options as a side effect.
 set nocompatible
 
-" Set line numbers
+ Set line numbers
 set number
 
 " Set automatic identation
@@ -74,7 +74,7 @@ let g:netrw_list_hide.=',\(^\|\s\s\)\zs\.\S\+'
 syntax on
 " Enable more than just the 8 basic colors
 set t_Co=256
-colorscheme elflord
+colorscheme desert
 
 " For hightlighting the actual line where the cursor is
 set cursorline
@@ -89,7 +89,7 @@ highlight CursorLine cterm=none ctermbg=235
 " Highlights a search. To stop highlighting do :noh
 set hlsearch
 " Change colour of font when in search function
-hi Search ctermfg=White ctermbg=DarkYellow
+"hi Search ctermfg=White ctermbg=Black
 
 " Remaping Ctrl+s to save the document
 :nmap <C-s> :w!<cr>
