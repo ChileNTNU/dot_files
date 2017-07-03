@@ -2,8 +2,8 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
-# Functionality only for Windows bash
-# Lunch zsh instead of bash
+# In windows there is no way change the default shell, therefore bash should be run
+# first and later zsh
 if [ -t 1 ]; then
   exec zsh
 fi
