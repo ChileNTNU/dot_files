@@ -2,12 +2,12 @@
   alles = log --oneline --graph --decorate --all
   next = ! git checkout `git log --reverse --ancestry-path HEAD..master | head -n 1 | cut -d ' ' -f 2`
 [user]
-	name = Emilio Garcia
-	email = el_burro@abc.com
+  name = Emilio Garcia
+  email = el_burro@abc.com
 [core]
-	editor = vim
+  editor = vim
 [push]
-	default = simple
+  default = simple
 [color]
   diff = auto
   status = auto
