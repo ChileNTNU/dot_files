@@ -1,15 +1,16 @@
-#!/bin/bash
+#!/bin/zsh
 
-# Start a new session
+# Start a new session and first window
 tmux new-session -s "one" -d -n 'dir'
+# Create second window and do a vertical split
 tmux new-window -n 'files'
-# Do a vertical split
 tmux split-window -v
+# Create thrid window and do an horizontal split
 tmux new-window -n 'vim'
-# Do an horizontal split and open vim
-tmux split-window -h 'vim'
+tmux split-window -h
+# Create fourth window
 tmux new-window -n 'extras'
-# Go to window number 0
-tmux select-window -t 0
+# Go to first window, numeration starts from 1 and not from 0
+tmux select-window -t 1
 # Attach last created session
 tmux -2 attach-session -d
