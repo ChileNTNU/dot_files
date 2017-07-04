@@ -11,8 +11,26 @@ colorscheme elflord
 " Set line numbers
 set number
 
+" Set automatic identation
 set smartindent
 filetype plugin indent on
+
+" ---- Quasi fuzzy search ----
+" Search down into subfolders for files
+" Provides tab-completion for all file-related tasks
+set path+=**
+" Display all matching files when we tab complete
+set wildmenu
+" Things to consider:
+" :b lets you autocomplete any open buffer
+
+" ---- Tag jumping ----
+" Create the 'tags' file
+:command MakeTags !ctags -R .
+" Now we can :
+" Ctrl + ] jump to tag under cursor
+" g + Ctrl + ] for ambiguous tags
+" Ctrl + t jump back up the tag stack
 
 " Tab configuration
 " show existing tab with 2 spaces width
