@@ -57,3 +57,5 @@ hi Search ctermfg=White ctermbg=Black
 " Commands
 " Delete trailing spaces
 :command Trial %s/\s\+$//
+" Simplify grep
+:command -nargs=1 Grep grep -rn <q-args> .
