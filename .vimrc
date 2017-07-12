@@ -4,12 +4,6 @@
 " This must be first, because it changes other options as a side effect.
 set nocompatible
 
-" Set colors
-syntax on
-" Enable more than just the 8 basic colors
-set t_Co=256
-colorscheme elflord
-
 " Set line numbers
 set number
 
@@ -48,8 +42,20 @@ set expandtab
 " ^x^] for tags
 
 " ---- File browsing ----
+let g:netrw_banner=0         "disable annoying banner
+let g:netrw_browser_split=4  "open in prior window with 't'
+let g:netrw_altv=1           "open splits to the right with 'v'
+let g:netrw_liststyle=3      "tree view
+let g:netrw_list_hide=netrw_gitignore#Hide()
+let g:netrw_list_hide.=',\(^\|\s\s\)\zs\.\S\+'
 
+" ---- Set colors ----
+syntax on
+" Enable more than just the 8 basic colors
+set t_Co=256
+colorscheme elflord
 
+" For hightlighting the actual line where the cursor is
 set cursorline
 highlight CursorLine cterm=none ctermbg=235
 "highlight Cursor ctermbg=Green
@@ -64,7 +70,7 @@ set hlsearch
 " Change colour of font when in search function
 hi Search ctermfg=White ctermbg=Black
 
-" Commands
+" ---- Commands ----
 " Delete trailing spaces
 :command Trial %s/\s\+$//
 " Simplify grep
