@@ -40,8 +40,16 @@ set shiftwidth=2
 " On pressing tab, insert 2 spaces
 set expandtab
 
-"set cursorline
-"highlight Cursor guifg=white guibg=white
+" ---- Autocomplete ----
+" ^x^n just this file
+" ^x^f just for file names
+" ^x^] for tags
+
+" ---- File browsing ----
+
+
+set cursorline
+highlight CursorLine cterm=bold
 "highlight Cursor ctermbg=Green
 "highlight iCursor guifg=white guibg=steelblue
 "set guicursor=n-v-c:block-Cursor
