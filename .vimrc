@@ -6,6 +6,8 @@ set nocompatible
 
 " Set colors
 syntax on
+" Enable more than just the 8 basic colors
+set t_Co=256
 colorscheme elflord
 
 " Set line numbers
@@ -49,7 +51,7 @@ set expandtab
 
 
 set cursorline
-highlight CursorLine cterm=bold
+highlight CursorLine cterm=none ctermbg=235
 "highlight Cursor ctermbg=Green
 "highlight iCursor guifg=white guibg=steelblue
 "set guicursor=n-v-c:block-Cursor
