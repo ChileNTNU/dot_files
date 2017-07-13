@@ -4,7 +4,7 @@
 " This must be first, because it changes other options as a side effect.
 set nocompatible
 
- Set line numbers
+" Set line numbers
 set number
 
 " Set automatic identation
@@ -67,8 +67,9 @@ let g:netrw_banner=0         "disable annoying banner
 let g:netrw_browser_split=4  "open in prior window with 't'
 let g:netrw_altv=1           "open splits to the right with 'v'
 let g:netrw_liststyle=3      "tree view
-let g:netrw_list_hide=netrw_gitignore#Hide()
-let g:netrw_list_hide.=',\(^\|\s\s\)\zs\.\S\+'
+" These last two options do not work in bash for windows
+"let g:netrw_list_hide=netrw_gitignore#Hide()
+"let g:netrw_list_hide.=',\(^\|\s\s\)\zs\.\S\+'
 
 " ---- Set colors ----
 syntax on
