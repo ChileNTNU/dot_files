@@ -70,10 +70,13 @@ set hlsearch
 " Change colour of font when in search function
 hi Search ctermfg=White ctermbg=Black
 
-" ---- Commands ----
+" Remaping Ctrl+s to save the document
+:nmap <C-s> :w!<cr>
+:imap <C-s> <esc>:w!<cr>
 " Remaping to system's clipboard Ctrl+c and Ctrl+v
 vnoremap <C-c> "+y
 vnoremap <C-v> "+p
+" ---- Commands ----
 " Delete trailing spaces
 :command Trial %s/\s\+$//
 " Simplify grep
