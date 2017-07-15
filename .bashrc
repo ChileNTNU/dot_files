@@ -116,3 +116,6 @@ GIT_PROMPT_THEME=Single_Line
 GIT_PROMPT_START=$PS1
 
 source ~/apps/bash-git-prompt/gitprompt.sh
+
+# Disable flow control, so ctrl+s have no effect and we can use it in vim
+stty -ixon
