@@ -71,6 +71,9 @@ set hlsearch
 hi Search ctermfg=White ctermbg=Black
 
 " ---- Commands ----
+" Remaping to system's clipboard Ctrl+c and Ctrl+v
+vnoremap <C-c> "+y
+vnoremap <C-v> "+p
 " Delete trailing spaces
 :command Trial %s/\s\+$//
 " Simplify grep
