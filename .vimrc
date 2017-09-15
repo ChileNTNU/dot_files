@@ -41,6 +41,10 @@ set expandtab
 " ^x^f just for file names
 " ^x^] for tags
 
+" ---- Windows management ----
+" Ctrl-w + o   Maximize current screen
+" Ctrl-w + ^   Add again a minimized window
+
 " ---- File browsing ----
 let g:netrw_banner=0         "disable annoying banner
 let g:netrw_browser_split=4  "open in prior window with 't'
