@@ -1,12 +1,12 @@
 #!/bin/zsh
 
-# Start a new session and first window
-tmux new-session -s "one" -d -n 'dir'
+# Start a new session called "one" and first window called "dev"
+tmux new-session -s "one" -d -n 'dev'
 # Create second window and do a vertical split
-tmux new-window -n 'files'
+tmux new-window -n 'test'
 tmux split-window -v
 # Create thrid window and do an horizontal split
-tmux new-window -n 'vim'
+tmux new-window -n 'home'
 tmux split-window -h
 # Create fourth window
 tmux new-window -n 'extras'
