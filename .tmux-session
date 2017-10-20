@@ -1,15 +1,25 @@
 #!/bin/zsh
 
+# Go to development folder
+cd $WINHOME/svn_repo/mine/Firmware/firmware/src
 # Start a new session called "one" and first window called "dev"
 tmux new-session -s "one" -d -n 'dev'
-# Create second window and do a vertical split
+
+# Go to test folder
+cd ../unit_test
+# Create second window and do a horizontal split
+#tmux new-window -n 'test'
 tmux new-window -n 'test'
 tmux split-window -v
-# Create thrid window and do an horizontal split
+
+# Go to home folder
+cd ~
+# Create thrid window and do an vertical split
 tmux new-window -n 'home'
 tmux split-window -h
 # Create fourth window
 tmux new-window -n 'extras'
+
 # Go to first window, numeration starts from 1 and not from 0
 tmux select-window -t 1
 # Attach last created session
