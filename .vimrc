@@ -45,6 +45,13 @@ set expandtab
 " Ctrl-w + o   Maximize current screen
 " Ctrl-w + ^   Add again a minimized window
 
+" ---- Avoid using ESC for going to normal mode ----
+" Basically just use the normal mode commands with Alt, ex.
+" Alt-o      Opens a new line below
+" Alt-A      Appends to the end of current line
+" Alt-p      Pasters at the current insertion location
+" Alt-k      Moves up one line
+
 " ---- File browsing ----
 let g:netrw_banner=0         "disable annoying banner
 let g:netrw_browser_split=4  "open in prior window with 't'
