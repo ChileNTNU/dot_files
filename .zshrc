@@ -48,5 +48,10 @@ alias ls='ls --color'
 LS_COLORS='di=1;34:fi=0:ln=31:pi=0;32:so=33:bd=35:cd=37:or=92:mi=93:ex=92:*.rpm=90'
 export LS_COLORS
 
+# Start tmux
+if [ -z "$TMUX" ]; then
+  source .tmux-session
+fi
+
 # Disable flow control, so ctrl+s has no effect and we can use it in vim for saving
 stty -ixon
