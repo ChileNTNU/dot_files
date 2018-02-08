@@ -35,6 +35,9 @@ set tabstop=2
 set shiftwidth=2
 " On pressing tab, insert 2 spaces
 set expandtab
+" Define lines width to 80
+" For applying the format select a line and execute 'gq'
+set textwidth=80
 
 " ---- Autocomplete ----
 " ^x^n just this file
@@ -87,6 +90,9 @@ hi Search ctermfg=White ctermbg=Black
 " Remaping to system's clipboard Ctrl+c and Ctrl+v
 vnoremap <C-c> "+y
 vnoremap <C-v> "+p
+" Remaping Enter and Shitf+Enter for inserting a new line in normal mode
+nmap <S-Enter> O<Esc>
+nmap <CR> o<Esc>
 " ---- Commands ----
 " Delete trailing spaces
 :command Trial %s/\s\+$//
