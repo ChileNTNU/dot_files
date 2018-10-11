@@ -1,7 +1,7 @@
 #!/bin/zsh
 
 # Go to development folder
-cd $WINHOME/svn_repo/mine/Firmware/firmware/src
+cd $WINHOME/svn_repo/taiko/Firmware/firmware/src
 # Start a new session called "one" and first window called "dev"
 tmux new-session -s "one" -d -n 'dev'
 
