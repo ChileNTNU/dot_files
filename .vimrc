@@ -39,6 +39,13 @@ set expandtab
 " For applying the format select a line and execute 'gq'
 set textwidth=80
 
+" Show tabs and spaces with special chars
+" For showing them, but better use a command
+"set list
+set listchars=tab:░░,space:␣
+" For not showing tabs with special chars, but better use a command
+" set nolist
+
 " ---- Autocomplete ----
 " ^x^n just this file
 " ^x^f just for file names
@@ -100,4 +107,8 @@ nmap <CR> o<Esc>
 :command Trial %s/\s\+$//
 " Simplify grep
 :command -nargs=1 Grep grep -rn <q-args> .
+" Show spaces and tabs
+:command ShowTabs set list
+" Show no special chars
+:command ShowNoTabs set nolist
 
